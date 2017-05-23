@@ -1,5 +1,5 @@
 // app/utils/githubHelpers.js
-var axios = require('axios');
+import axios from 'axios'
 
 var id = "0370655df85744e6b9d3";
 var sec = "5a3c024001d5c935571e09d42f346cd044796b37";
@@ -57,4 +57,4 @@ var helpers = {
     }
 };
 
-module.exports = helpers;
+export default helpers

@@ -1,5 +1,4 @@
-var React = require('react');
-var PropsTypes = React.PropTypes;
+import React, { PropTypes } from 'react'
 
 function UserDetailsWrapper(props) {
     return (
@@ -11,7 +10,7 @@ function UserDetailsWrapper(props) {
 }
 
 UserDetailsWrapper.PropTypes = {
-    header: PropsTypes.string.isRequired,
+    header: PropTypes.string.isRequired,
 }
 
-module.exports = UserDetailsWrapper;
+export default UserDetailsWrapper

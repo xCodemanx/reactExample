@@ -1,7 +1,7 @@
 // app/containers/ConfirmBattleContainer.js
-var React = require('react');
-var ConfirmBattle = require('../components/ConfirmBattle');
-var githubHelpers = require('../utils/githubHelpers');
+import React, { PropTypes } from 'react'
+import ConfirmBattle from '../components/ConfirmBattle'
+import githubHelpers from '../utils/githubHelpers'
 
 var ConfirmBattleContainer = React.createClass({
     contextTypes: {
@@ -41,4 +41,4 @@ var ConfirmBattleContainer = React.createClass({
     }
 });
 
-module.exports = ConfirmBattleContainer;
+export default ConfirmBattleContainer
