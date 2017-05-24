@@ -1,6 +1,6 @@
 import React from 'react'
 import Results from '../components/Results'
-import githubHelpers from '../utils/githubHelpers'
+import { battle } from '../utils/githubHelpers'
 
 const ResultsContainer = React.createClass({
     getInitialState() {
@@ -9,14 +9,16 @@ const ResultsContainer = React.createClass({
             scores: []
         }
     },
-    componentDidMount() {
-        githubHelpers.battle(this.props.location.state.playersInfo)
-            .then((scores) => {
-                this.setState({
-                    scores: scores,
-                    isLoading: false
-                })
+    async componentDidMount() {
+        try {
+            const scores = await battle(this.props.location.state.playersInfo)
+            this.setState({
+                scores,
+                isLoading: false
             })
+        } catch (error) {
+            console.warn('Error in ResultsContainer:', error)
+        }
     },
     render() {
         return (

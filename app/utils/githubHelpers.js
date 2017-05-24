@@ -19,15 +19,17 @@ function getTotalStars(repos) {
     }, 0)
 }
 
-function getPlayersData(player) {
-    return getRepos(player.login)
-        .then(getTotalStars)
-        .then((totalStars) => {
-            return {
-                followers: player.followers,
-                totalStars
-            }
-        })
+async function getPlayersData(player) {
+    try {
+        const repos = await getRepos(player.login)
+        const totalStars = await getTotalStars(repos)
+        return {
+            followers: player.followers,
+            totalStars
+        }
+    } catch (error) {
+        console.warn('Error in getPlayersData', error)
+    }
 }
 
 function calculateScores(players) {
@@ -37,24 +39,21 @@ function calculateScores(players) {
     ]
 }
 
-const helpers = {
-    getPlayersInfo(players) {
-        return axios.all(players.map((username) => {
-            return getUserInfo(username)
-        }))
-            .then((info) => {
-                return info.map((user) => {
-                    return user.data
-                })
-            })
-            .catch((err) => { console.warn('Error in getPlayersInfo: ', err) })
-    }, battle(players) {
-        const playerOneData = getPlayersData(players[0]);
-        const playerTwoData = getPlayersData(players[1]);
-        return axios.all([playerOneData, playerTwoData])
-            .then(calculateScores)
-            .catch((err) => { console.warn('Error in getPlayersInfo: ', err) })
+export async function getPlayersInfo(players) {
+    try {
+        const info = await Promise.all(players.map((username) => getUserInfo(username)))
+        return info.map((user) => user.data)
+    } catch (error) {
+        console.warn('Error in getPlayersInfo: ', error)
     }
-};
-
-export default helpers
+}
+export async function battle(players) {
+    try {
+        const playerOneData = getPlayersData(players[0])
+        const playerTwoData = getPlayersData(players[1])
+        const data = await Promise.all([playerOneData, playerTwoData])
+        return calculateScores(data)
+    } catch (error) {
+        console.warn('Error in getPlayersInfo: ', error)
+    }
+}

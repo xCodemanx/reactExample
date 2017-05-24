@@ -1,7 +1,7 @@
 // app/containers/ConfirmBattleContainer.js
 import React, { PropTypes } from 'react'
 import ConfirmBattle from '../components/ConfirmBattle'
-import githubHelpers from '../utils/githubHelpers'
+import { getPlayersInfo } from '../utils/githubHelpers'
 
 const ConfirmBattleContainer = React.createClass({
     contextTypes: {
@@ -13,15 +13,17 @@ const ConfirmBattleContainer = React.createClass({
             playersInfo: [],
         }
     },
-    componentDidMount() {
-        const { query } = this.props.location.query;
-        githubHelpers.getPlayersInfo([query.playerOne, query.playerTwo])
-            .then((players) => {
-                this.setState({
-                    isLoading: false,
-                    playersInfo: [players[0], players[1]]
-                })
+    async componentDidMount() {
+        const { query } = this.props.location;
+        try {
+            const players = await getPlayersInfo([query.playerOne, query.playerTwo])
+            this.setState({
+                isLoading: false,
+                playersInfo: [players[0], players[1]]
             })
+        } catch (error) {
+            console.warn('Error in ConfirmBattleContainer:', error)
+        }
     },
     handleInitiateBattle() {
         this.context.router.push({
