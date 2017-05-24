@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-var styles = {
+const styles = {
     container: {
         position: 'fixed',
         left: 0,
@@ -16,7 +16,7 @@ var styles = {
     }
 }
 
-var Loading = React.createClass({
+const Loading = React.createClass({
     PropTypes: {
         text: PropTypes.string,
         speed: PropTypes.number,

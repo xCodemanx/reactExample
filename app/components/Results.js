@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import styles from '../styles'
+import * as styles from '../styles'
 import { Link } from 'react-router'
 import UserDetails from './UserDetails'
 import UserDetailsWrapper from './UserDetailsWrapper'
@@ -37,8 +37,8 @@ function Results(props) {
         )
     }
 
-    var winningIndex = props.scores[0] > props.scores[1] ? 0 : 1;
-    var losingIndex = winningIndex === 0 ? 1 : 0;
+    const winningIndex = props.scores[0] > props.scores[1] ? 0 : 1;
+    const losingIndex = winningIndex === 0 ? 1 : 0;
     return (
         <MainContainer>
             <h1>Results</h1>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-var Main = React.createClass({
+const Main = React.createClass({
     render: function () {
         return (
             <div>

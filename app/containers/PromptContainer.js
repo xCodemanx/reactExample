@@ -2,7 +2,7 @@
 import React from 'react'
 import Prompt from '../components/Prompt'
 
-var PromptContainer = React.createClass({
+const PromptContainer = React.createClass({
     contextTypes: {
         router: React.PropTypes.object.isRequired
     },

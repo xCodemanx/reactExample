@@ -1,9 +1,9 @@
 // app/utils/githubHelpers.js
 import axios from 'axios'
 
-var id = "0370655df85744e6b9d3";
-var sec = "5a3c024001d5c935571e09d42f346cd044796b37";
-var param = "?client_id=" + id + "&client_secret=" + sec;
+const id = "0370655df85744e6b9d3";
+const sec = "5a3c024001d5c935571e09d42f346cd044796b37";
+const param = "?client_id=" + id + "&client_secret=" + sec;
 
 function getUserInfo(username) {
     return axios.get('https://api.github.com/users/' + username + param);
@@ -37,7 +37,7 @@ function calculateScores(players) {
     ]
 }
 
-var helpers = {
+const helpers = {
     getPlayersInfo: function (players) {
         return axios.all(players.map(function (username) {
             return getUserInfo(username)
@@ -49,8 +49,8 @@ var helpers = {
             })
             .catch(function (err) { console.warn('Error in getPlayersInfo: ', err) })
     }, battle: function (players) {
-        var playerOneData = getPlayersData(players[0]);
-        var playerTwoData = getPlayersData(players[1]);
+        const playerOneData = getPlayersData(players[0]);
+        const playerTwoData = getPlayersData(players[1]);
         return axios.all([playerOneData, playerTwoData])
             .then(calculateScores)
             .catch(function (err) { console.warn('Error in getPlayersInfo: ', err) })

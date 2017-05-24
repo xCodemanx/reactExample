@@ -1,6 +1,6 @@
 // app/components/ConfirmBattle.js
 import React, { PropTypes } from 'react'
-import styles from '../styles'
+import * as styles from '../styles'
 import { Link } from 'react-router'
 import UserDetails from './UserDetails'
 import UserDetailsWrapper from './UserDetailsWrapper'
