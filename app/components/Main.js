@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Main = React.createClass({
-    render: function () {
+    render() {
         return (
             <div>
                 This is main!
@@ -11,4 +11,4 @@ const Main = React.createClass({
     }
 });
 
-module.exports = Main;
+export default Main
