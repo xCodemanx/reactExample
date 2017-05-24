@@ -3,14 +3,14 @@ import axios from 'axios'
 
 const id = "0370655df85744e6b9d3";
 const sec = "5a3c024001d5c935571e09d42f346cd044796b37";
-const param = "?client_id=" + id + "&client_secret=" + sec;
+const param = `?client_id=${id}&client_secret=${sec}`;
 
-function getUserInfo(username) {
-    return axios.get('https://api.github.com/users/' + username + param);
+function getUserInfo(username = 'himaeng') {
+    return axios.get(`https://api.github.com/users/${username + param}`);
 }
 
-function getRepos(username) {
-    return axios.get('https://api.github.com/users/' + username + '/repos' + param + '&per_page=100');
+function getRepos(username = 'himaeng') {
+    return axios.get(`https://api.github.com/users/${username}/repos${param}&per_page=100`);
 }
 
 function getTotalStars(repos) {
@@ -25,7 +25,7 @@ function getPlayersData(player) {
         .then((totalStars) => {
             return {
                 followers: player.followers,
-                totalStars: totalStars
+                totalStars
             }
         })
 }
